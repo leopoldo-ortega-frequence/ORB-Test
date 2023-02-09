@@ -1,0 +1,342 @@
+@import "variables";
+@import "chart";
+@import "utils";
+@import "401";
+@import "metrics";
+@import "quality";
+// WILL NEED TO ADJUST SOME OF THE UTILITIES CLASSES TO BE BETTER SUITD HERE
+/* default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+button {
+  background: transparent;
+  border: none;
+}
+button {
+  cursor: pointer;
+}
+//   Main Page styling - defining the base template for the app
+.app-wrapper {
+  display: flex;
+  position: relative;
+  .left-content {
+    position: fixed;
+    z-index: 30;
+    width: 20%;
+    top: 0;
+    left: 0;
+    background-color: $off-white;
+    box-shadow: $shadow-primary;
+    height: 100vh;
+    transform: translateX(0);
+    transition: $transition-primary;
+    &.hidden {
+      transform: translate(-100%);
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      height: 300px;
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .left-nav-container {
+      width: 100%;
+      .buttons {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        button {
+          padding: 10px 0;
+          width: 100%;
+          font-size: 1.25rem;
+          font-weight: 600;
+          background-color: transparent;
+          border: 1px solid $light-grey;
+        }
+      }
+    }
+  }
+  .left-content-btn {
+    transform: scale(0.5) rotate(180deg);
+    transition: $transition-primary;
+    position: fixed;
+    top: 0.75rem;
+    left: 17%;
+    z-index: 35;
+    &.hide {
+      transform: scale(0.5) rotate(0deg);
+      left: 1rem;
+    }
+  }
+  .right-content {
+    position: relative;
+    width: 80%;
+    margin-left: 20%;
+    transition: $transition-primary;
+    &.full {
+      width: 100%;
+      margin-left: 0;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      background-color: white;
+      z-index: 20;
+      width: 80%;
+      padding: 0 8rem;
+      border-bottom: 1px solid $dark-grey;
+      transition: $transition-primary;
+      &.nav-hide {
+        top: -100%;
+      }
+      &.full {
+        width: 100%;
+      }
+      .nav-header {
+        display: flex;
+        margin-top: 2rem;
+        align-items: center;
+        h1 {
+          font-size: 30px;
+        }
+        div {
+          font-weight: 700;
+          padding-left: 4rem;
+        }
+      }
+      .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 1rem;
+        form {
+          padding-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          .nav-input {
+            width: 30%;
+            position: relative;
+            label {
+              display: inline-block;
+              margin-bottom: 0.5rem;
+            }
+            input {
+              font-size: 1rem;
+            }
+            .input-icon {
+              position: absolute;
+              right: 18px;
+              top: 56%;
+              font-size: 1rem;
+              &.up {
+                transform: rotate(0);
+              }
+              &.down {
+                transform: rotate(180deg);
+              }
+            }
+            .designer-list {
+              position: absolute;
+              background-color: white;
+              width: 100%;
+              border-radius: 12px;
+              padding: 4px 0;
+              max-height: 250px;
+              z-index: 20;
+              overflow-y: auto;
+              box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+              li {
+                list-style: none;
+                padding: 6px 1rem;
+                cursor: pointer;
+                &:hover {
+                  background-color: #ececec;
+                }
+              }
+            }
+          }
+        }
+      }
+      .nav-settings {
+        position: absolute;
+        top: 2rem;
+        right: 8rem;
+        .nav-icon {
+          cursor: pointer;
+          font-size: 1.5rem;
+        }
+      }
+      .nav-download {
+        position: absolute;
+        top: 2rem;
+        right: 11rem;
+        .nav-icon {
+          cursor: pointer;
+          font-size: 1.5rem;
+        }
+      }
+      .nav-toggle-btn {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 2rem;
+        right: 1.5rem;
+        transition: $transition-primary;
+        transform: rotate(0);
+        cursor: pointer;
+        i:nth-child(2) {
+          transform: translateY(-8px);
+        }
+        &.btn-toggled {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    // PDF Menu container
+    .print-menu {
+      padding: 2rem;
+      box-shadow: $shadow-primary;
+      width: 600px;
+      height: 500px;
+      background-color: white;
+      position: absolute;
+      left: 50%;
+      top: 105%;
+      transform: translateX(-50%) scale(0);
+      transition: $transition-primary;
+      &.menu-active {
+        transform: translateX(-50%) scale(1);
+      }
+      h2,
+      h4 {
+        text-align: center;
+        margin-bottom: 0.75rem;
+      }
+      form {
+        div {
+          margin: 4px 0;
+        }
+      }
+      button {
+        margin-top: 1.5rem;
+        transform: scale(2);
+      }
+    }
+    .settings-menu {
+      width: 500px;
+      height: 500px;
+      box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+      position: fixed;
+      z-index: 50;
+      left: 47%;
+      background-color: #dedede;
+      top: 19%;
+      transform: translateX(-50%) scale(0);
+      transition: $transition-primary;
+      box-shadow: $shadow-primary;
+      padding: 2rem;
+      &.menu-active {
+        transform: translateX(-50%) scale(1);
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .settings-container {
+        .settings-data {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          button {
+            background-color: #ff3131;
+            color: white;
+            padding: 8px;
+            border-radius: 10px;
+            transition: $transition-primary;
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+        .designer-select-container {
+          margin-top: 1rem;
+          .settings-designer-select {
+            margin-top: 0.5rem;
+          }
+        }
+        #data_last_update {
+          display: inline-block;
+          width: 100%;
+          font-size: 12px;
+          font-style: italic;
+        }
+      }
+      .menu-close {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        font-size: 2rem;
+        transform: scale(1);
+        transition: $transition-primary;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+    // Main Section base styling - includes hide/unhide effect
+    section {
+      position: absolute;
+      width: 100%;
+      transform: translateX(0);
+      opacity: 1;
+      transition: $transition-primary;
+      background-color: white;
+      &.hidden {
+        transition: $transition-primary;
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      .content-container {
+        margin: 0 auto;
+        margin-bottom: 3rem;
+        margin-top: 280px;
+        width: 100%;
+        padding: 0 8rem;
+        transition: $transition-primary;
+        &.container-toggle {
+          margin-top: 45px;
+        }
+        // Overflow container styles
+        .overflow-container {
+          margin: 0 auto 4rem auto;
+          overflow: hidden;
+          position: relative;
+          width: 100%;
+          .overflow-content {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            transition: $transition-primary;
+            height: 100%;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}

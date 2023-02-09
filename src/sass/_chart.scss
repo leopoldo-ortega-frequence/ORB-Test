@@ -1,0 +1,103 @@
+/* d3 chart styles */
+.line {
+  fill: none;
+  stroke-width: 2px;
+}
+.stroke-primary {
+  stroke: $extra-dark-grey;
+}
+.stroke-secondary {
+  stroke: $dark-grey;
+}
+.stroke-tertiary {
+  stroke: $grey;
+}
+.fill-primary {
+  fill: $extra-dark-grey;
+}
+.fill-secondary {
+  fill: $dark-grey;
+}
+.fill-tertiary {
+  fill: $grey;
+}
+.line-chart-label {
+  fill: black;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+.chart-title {
+  text-transform: capitalize;
+}
+
+// Line Chart Tooltip
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: white;
+  stroke: black;
+}
+
+.focus text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.tooltip {
+  fill: #e1e1e1;
+}
+.bar-tooltip {
+  opacity: 0;
+  background-color: white;
+  font-size: 14px;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 8px;
+}
+rect.fill-primary {
+  filter: brightness(1);
+  transition: $transition-primary;
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+
+.tooltip-date,
+.tooltip-likes {
+  font-weight: bold;
+}
+#svg-metric-graph .tick line {
+  display: none;
+}
+.tick text {
+  fill: $extra-dark-grey;
+}
+path.domain {
+  stroke: $extra-dark-grey;
+  stroke-width: 2px;
+}
+text.legend-data {
+  font-size: 12px;
+}
+.legend-data.trendline {
+  transform: translateY(15px);
+  height: 1px !important;
+}
+.fill-light-grey {
+  fill: $extra-light-grey;
+}
+
+/* Remove domain from top of chart */
+#svg-metric-ad-graph .y-grid-line .domain {
+  stroke: transparent;
+  stroke-width: 0;
+}
+#overview.metrics #svg-metric-graph g.chart-group text,
+#overview.metrics #svg-metric-ad-graph .chart-group .tick text,
+#overview.quality .chart-group .tick text {
+  font-size: 14px;
+}

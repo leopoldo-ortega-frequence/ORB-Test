@@ -1,0 +1,259 @@
+// Metrics Page Styling - after using the base layout styling
+.metrics {
+  .content-container {
+    .overflow-container {
+      .overflow-content {
+        // Place all component styles here!
+        &.metric-card {
+          .outer-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: space-between;
+            .inner-container {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              position: relative;
+              gap: 1.75rem;
+              width: 100%;
+              .metrics-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1rem;
+                width: 30%;
+                height: 350px;
+                border-radius: 10px;
+                border: 1px solid black;
+                h3 {
+                  font-size: 1.5rem;
+                }
+                h2 {
+                  font-size: 4.5rem;
+                  font-weight: 600;
+                }
+                .content {
+                  display: flex;
+                  width: 100%;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  background-color: $extra-light-grey;
+                  border-bottom-left-radius: 10px;
+                  border-bottom-right-radius: 10px;
+                  min-height: 100px;
+                  .card-content {
+                    display: flex;
+                    align-items: flex-start;
+                    width: 100%;
+                    justify-content: center;
+                    margin-top: 1rem;
+                    gap: 12px;
+                    .card-content-text {
+                      font-size: 20px;
+                      width: 160px;
+                      .message {
+                        font-size: 12px;
+                      }
+                    }
+                  }
+                  .layout {
+                    margin-right: 0.5rem;
+                    .percent {
+                      display: inline-block;
+                      margin-top: 0.25rem;
+                      font-size: 1.5rem;
+                    }
+                  }
+                  .message {
+                    display: inline-block;
+                    margin-bottom: 1rem;
+                  }
+                  .ramp-error {
+                    padding: 0 0.5rem 0 1rem;
+                    word-break: break-word;
+                    color: gray;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.metric-ads {
+          .ad-cards-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .num-ad-card {
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+              align-items: center;
+              width: 30%;
+              height: 150px;
+              border-radius: 10px;
+              border: 1px solid black;
+              .content-left {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                background-color: $extra-light-grey;
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+                h3 {
+                  font-weight: 400;
+                  font-size: 18px;
+                }
+                p {
+                  font-size: 14px;
+                }
+              }
+              .ad-card-val {
+                font-size: 54px;
+                font-weight: 700;
+                padding: 0 1rem;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+              }
+            }
+          }
+        }
+        &.chart {
+          .chart-container {
+            min-height: 450px;
+            border-radius: 0.5rem;
+            width: 100%;
+            .tabs-container {
+              height: 3.25rem;
+              border-top-left-radius: 0.5rem;
+              border-top-right-radius: 0.5rem;
+              form {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                height: 100%;
+                border: 2px solid $light-grey;
+                background-color: $extra-light-grey;
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+                button {
+                  background-color: white;
+                  border-right: 2px solid $light-grey;
+                  &.chart-btn-active {
+                    background-color: $light-grey;
+                    font-size: 14px;
+                    font-weight: 700;
+                  }
+                }
+                button:nth-of-type(1) {
+                  border-top-left-radius: 0.5rem;
+                }
+                button:nth-of-type(5) {
+                  border-top-right-radius: 0.5rem;
+                }
+              }
+            }
+            .svg-container {
+              border: 2px solid black;
+              min-height: 520px;
+              border-bottom-left-radius: 0.5rem;
+              border-bottom-right-radius: 0.5rem;
+              position: relative;
+            }
+          }
+        }
+        &.metrics-table {
+          border: 1px solid black;
+          border-radius: 0.5rem;
+          min-height: 180px;
+          .table-container {
+            width: 100%;
+            font-size: 1rem;
+            overflow-y: overlay;
+            max-height: 400px;
+            .grid-row {
+              display: grid;
+              grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;
+              text-align: center;
+              height: 2.5rem;
+              &.body {
+                border-bottom: 1px solid $grey;
+                &.header-sub {
+                  font-weight: bold;
+                  position: fixed;
+                  top: 40px;
+                  width: 100%;
+                  background-color: white;
+                  .ads-table {
+                    div {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      flex-direction: column;
+                      span:nth-child(2) {
+                        font-weight: normal;
+                        font-size: 10px;
+                        margin-top: -6px;
+                      }
+                    }
+                  }
+                }
+                & > div {
+                  &:not(.week-col) {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    border-right: 1px solid $grey;
+                  }
+                  &.week-col {
+                    border-right: 1px solid black;
+                  }
+                  span {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  }
+                  &:not(.week-col) > span:last-of-type {
+                    background-color: $extra-light-grey;
+                  }
+                  // Total ads - last column
+                  &.ads-table {
+                    grid-template-columns: 1fr 1fr 1fr;
+                  }
+                }
+              }
+              &.header-main {
+                font-weight: bold;
+                position: fixed;
+                width: 100%;
+                background-color: $light-grey;
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+                div {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  border-right: 1px solid $grey;
+                  &:first-child {
+                    border-right: 1px solid black;
+                  }
+                }
+              }
+              &:nth-child(3) {
+                margin-top: 80px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

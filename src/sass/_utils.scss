@@ -1,0 +1,279 @@
+/* utilitie classes */
+.loaderActive {
+  display: flex !important;
+}
+.snackbar-active {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+.transition-primary {
+  transition: $transition-primary !important;
+}
+.negative-color {
+  color: $negative-color;
+}
+.no-data-msg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.25rem;
+  color: $dark-grey;
+}
+/* Component hidden class names */
+.section-hide {
+  transform: translateY(-150%) !important;
+  height: 0px !important;
+}
+.section-btn-toggle {
+  transform: rotate(180deg) scale(0.5) !important;
+}
+/* component classes */
+.input {
+  border: 1px solid $extra-dark-grey;
+  border-radius: 16px;
+  padding: 0 1rem;
+  margin-right: 2rem;
+  width: 100%;
+  height: 40px;
+  padding-right: 15px;
+  color: #818181;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.active {
+  background-color: $grey !important;
+}
+// Collapsable Sections Header
+.metrics-section-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  .header-left {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
+  .header-right {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    button {
+      transition: $transition-primary;
+      transform: scale(0.5);
+    }
+  }
+}
+
+//   Chevron - Special
+.chevron::before {
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: "";
+  display: inline-block;
+  height: 20px;
+  border-color: black;
+  left: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 20px;
+}
+.chevron:hover {
+  cursor: pointer;
+}
+.chevron.right:before {
+  left: 0;
+  transform: rotate(45deg);
+}
+.chevron.left:before {
+  left: 0.25em;
+  transform: rotate(-135deg);
+}
+
+.delta.up {
+  width: 0;
+  height: 0;
+  margin-top: 6px;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-bottom: 35px solid $positive-color;
+}
+.delta.down {
+  width: 0;
+  height: 0;
+  margin-top: 6px;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 35px solid $negative-color;
+}
+
+// }
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(75, 85, 99, 0.8);
+  z-index: 50;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @keyframes square-animation {
+    0% {
+      left: 0;
+      top: 0;
+    }
+
+    10.5% {
+      left: 0;
+      top: 0;
+    }
+    12.5% {
+      left: $square;
+      top: 0;
+    }
+
+    23% {
+      left: $square;
+      top: 0;
+    }
+    25% {
+      left: $square * 2;
+      top: 0;
+    }
+
+    35.5% {
+      left: $square * 2;
+      top: 0;
+    }
+    37.5% {
+      left: $square * 2;
+      top: $square;
+    }
+
+    48% {
+      left: $square * 2;
+      top: $square;
+    }
+    50% {
+      left: $square;
+      top: $square;
+    }
+
+    60.5% {
+      left: $square;
+      top: $square;
+    }
+    62.5% {
+      left: $square;
+      top: $square * 2;
+    }
+
+    73% {
+      left: $square;
+      top: $square * 2;
+    }
+    75% {
+      left: 0;
+      top: $square * 2;
+    }
+
+    85.5% {
+      left: 0;
+      top: $square * 2;
+    }
+    87.5% {
+      left: 0;
+      top: $square;
+    }
+
+    98% {
+      left: 0;
+      top: $square;
+    }
+    100% {
+      left: 0;
+      top: 0;
+    }
+  }
+
+  // This is just a cute animation that cycles through the different hues.
+  @keyframes hue-rotate {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+
+  // Set the rotation to '-135deg' to get a heart shaped loading indicator. 😘
+  .loading {
+    position: relative;
+    width: $square * 3;
+    height: $square * 3;
+    transform: rotate(45deg);
+    animation: hue-rotate $duration linear infinite both;
+  }
+
+  .loading__square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $square - 4px;
+    height: $square - 4px;
+    margin: 2px;
+    border-radius: 2px;
+    background: #07a;
+    background-image: linear-gradient(45deg, #fa0 40%, #0c9 60%);
+    background-image: -moz-linear-gradient(#fa0, #fa0);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: square-animation $duration ease-in-out infinite both;
+
+    @for $i from 0 through 7 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: -(calc($duration / 7)) * $i;
+      }
+    }
+  }
+  span {
+    display: inline-block;
+    color: white;
+    font-size: 1.875rem;
+    margin-top: 12px;
+  }
+}
+
+// Snackbar
+#snackbar {
+  position: fixed;
+  display: flex;
+  box-shadow: 0px 3px 6px rgb(0 0 0 / 25%);
+  justify-content: center;
+  align-items: center;
+  transform: translateY(8rem);
+  bottom: 2.75rem;
+  left: 2rem;
+  font-size: 18px;
+  background-color: rgb(239 68 68);
+  color: white;
+  padding: 2rem;
+  opacity: 0;
+  border-radius: 0.5rem;
+  transition: $transition-primary;
+  z-index: 30;
+}
